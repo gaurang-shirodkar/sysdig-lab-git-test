@@ -15,21 +15,22 @@ spec:
         app: security-playground
     spec:
       affinity:
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-              - matchExpressions:
-                - key: kubernetes.io/arch
-                  operator: In
-                  values:
-                  - amd64
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
       containers:
       - name: security-playground
         image: ghcr.io/andrewd-sysdig/security-playground:latest
         ports:
         - containerPort: 8080
         securityContext:
-          privileged: true
+          privileged: false
+
 ---
 apiVersion: v1
 kind: Service
